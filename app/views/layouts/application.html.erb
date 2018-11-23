@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <a rel="nofollow" data-method="delete" href="/users/sign_out">logout</a>
+    <% end %>
     <%= yield %>
   </body>
 </html>
