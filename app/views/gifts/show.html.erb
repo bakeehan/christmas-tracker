@@ -1,2 +1,9 @@
 <h1>Gifts#show</h1>
 <p>Find me in app/views/gifts/show.html.erb</p>
+
+<%= a_logic(@gift) %> <%= @gift.title %> for <%= @gift.friend.name %>
+<br><b>cost:</b> $<%= @gift.price %>
+
+<p>
+
+<a href="/gifts/<%= @gift.id %>/edit">edit gift</a>

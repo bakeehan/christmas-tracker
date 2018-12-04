@@ -1,2 +1,14 @@
 <h1>Gifts#index</h1>
 <p>Find me in app/views/gifts/index.html.erb</p>
+
+<ul>
+	<% @gifts.each do |present| %>
+
+		<li><a href="/gifts/<%= present.id %>"><%= present.friend.name %><%= check_possessive(present.friend) %> <%= present.title %></a>
+			<!-- (<a href="/gifts/<%= present.id %>/edit">edit</a>) -->
+		</li>
+
+	<% end %>
+</ul>
+
+<a href="/gifts/new">add new gift</a>
