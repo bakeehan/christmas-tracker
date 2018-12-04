@@ -10,7 +10,10 @@ end
 def create
 	@friend = Friend.new(friend_params)
 	@friend.user_id = current_user.id
-	if @friend.save
+	if !@friend.budget || !@friend.name
+		flash.notice = "Must include a name and price!"
+		render "/friends/new"
+	elsif @friend.save
 		redirect_to "/friends"
 	else
 		render "/friends/new"
@@ -54,7 +57,7 @@ end
 private
 
 	def friend_params
-		params.require(:friend).permit(:name, :user_id)
+		params.require(:friend).permit(:name, :user_id, :budget)
 	end
 
 end

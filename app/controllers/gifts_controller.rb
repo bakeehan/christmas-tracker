@@ -9,11 +9,15 @@ def new
 end
 
 def create
+	@friends = current_user.friends
 	@gift = Gift.new(gift_params)
 	# @gift.friend_id = gift_params.friend_id
 	@gift.friend_id = params[:friend_id]
 	@gift.user_id = current_user.id
-	if @gift.save
+	if !@gift.price || !@gift.title
+		flash.notice = "Must include a name and price!"
+		render "/gifts/new"
+	elsif @gift.save
 		redirect_to "/gifts"
 	else
 		render "/gifts/new"
@@ -39,14 +43,19 @@ def edit
 end
 
 def update
-	@gift = Gift.find(params[:id])
-	@gift.friend_id = params[:friend_id]
-	if @gift.update(gift_params)
-		# redirect_to "/gifts/#{@gift[:id]}"
-		redirect_to "/gifts"
-	else
-		render "/gifts/#{@gift[:id]}/edit"
-	end
+	# if !params[:price] || !params[:title]
+	# 	render "edit"
+	# 	redirect_to "/gifts/#{@gift[:id]}/edit"
+	# else
+		@gift = Gift.find(params[:id])
+		@gift.friend_id = params[:friend_id]
+		if @gift.update(gift_params)
+			# redirect_to "/gifts/#{@gift[:id]}"
+			redirect_to "/gifts"
+		else
+			render "/gifts/#{@gift[:id]}/edit"
+		end
+	# end
 end
 
 def show
