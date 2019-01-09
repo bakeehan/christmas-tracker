@@ -1,10 +1,34 @@
 <h1>Home#landing</h1>
 <p>Find me in app/views/home/landing.html.erb</p>
 
+<b>total budget:</b> <%= calc_total(@user) %>
+
 <ul>
-	<% @gifts.each do |gift| %>
+<% @friends.each do |friend| %>
+	<li>budget for <%= friend.name %>: <i><%= friend.budget %></i></li>
+<% end %>
+</ul>
 
-		<li><%= gift.title %></li>
+<hr>
 
-	<% end %>
+<b>total spent:</b> <%= calc_spent(@user) %>
+
+<ul>
+<% @friends.each do |friend| %>
+	<li>money spent on <%= friend.name %>: <i><%= calc_spent(friend) %></i>
+		<% friend.gifts.each do |gift| %>
+			<br>-- <%= gift.title %> (<i><%= gift.price %></i>)
+		<% end %>
+	</li>
+<% end %>
+</ul>
+
+<hr>
+
+<b>remaining budget:</b> <%= calc_remaining(@user, calc_total(@user)) %>
+
+<ul>
+<% @friends.each do |friend| %>
+	<li>remaining budget for <%= friend.name %>: <i><%= calc_remaining(friend, friend.budget) %></i></li>
+<% end %>
 </ul>

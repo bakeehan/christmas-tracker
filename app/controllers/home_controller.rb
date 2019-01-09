@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   		redirect_to "/users/sign_up"
   	else
   		@friends = current_user.friends
-  		@gifts = current_user.gifts
+  		@user = current_user
   	end
   end
 
