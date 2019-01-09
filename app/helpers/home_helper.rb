@@ -21,4 +21,9 @@ module HomeHelper
 		return budget
 	end
 
+	def percent(friend, user)
+		decimal = friend.budget.to_f / calc_total(user)
+		return (decimal * 100)
+	end
+
 end

@@ -1,23 +1,32 @@
 <h1>Home#landing</h1>
 <p>Find me in app/views/home/landing.html.erb</p>
 
-<b>total budget:</b> <%= calc_total(@user) %>
+<!-- https://www.anychart.com/blog/2017/12/06/pie-chart-create-javascript/ -->
+<!-- https://railsapps.github.io/rails-javascript-include-external.html -->
+
+<b>total budget:</b> $<%= calc_total(@user) %>
+
+<div style="width:500px;height:28px;background-color:silver;display:flex;">
+	<% @friends.each do |friend| %>
+		<div style="height:23px;width:calc(<%= percent(friend, @user) %>% - 7px);border-right: 2px solid white;padding:5px 0 0 5px;"><%= friend.name %> (<i><%= percent(friend, @user).to_i %>%</i>)</div>
+	<% end %>
+</div>
 
 <ul>
 <% @friends.each do |friend| %>
-	<li>budget for <%= friend.name %>: <i><%= friend.budget %></i></li>
+	<li>budget for <%= friend.name %>: <i>$<%= friend.budget %></i></li>
 <% end %>
 </ul>
 
 <hr>
 
-<b>total spent:</b> <%= calc_spent(@user) %>
+<b>total spent:</b> $<%= calc_spent(@user) %>
 
 <ul>
 <% @friends.each do |friend| %>
-	<li>money spent on <%= friend.name %>: <i><%= calc_spent(friend) %></i>
+	<li>money spent on <%= friend.name %>: <i>$<%= calc_spent(friend) %></i>
 		<% friend.gifts.each do |gift| %>
-			<br>-- <%= gift.title %> (<i><%= gift.price %></i>)
+			<br>-- <%= gift.title %> (<i>$<%= gift.price %></i>)
 		<% end %>
 	</li>
 <% end %>
@@ -25,10 +34,10 @@
 
 <hr>
 
-<b>remaining budget:</b> <%= calc_remaining(@user, calc_total(@user)) %>
+<b>remaining budget:</b> $<%= calc_remaining(@user, calc_total(@user)) %>
 
 <ul>
 <% @friends.each do |friend| %>
-	<li>remaining budget for <%= friend.name %>: <i><%= calc_remaining(friend, friend.budget) %></i></li>
+	<li>remaining budget for <%= friend.name %>: <i>$<%= calc_remaining(friend, friend.budget) %></i></li>
 <% end %>
 </ul>
