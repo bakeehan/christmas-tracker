@@ -1,2 +1,10 @@
 <h1>Home#landing</h1>
 <p>Find me in app/views/home/landing.html.erb</p>
+
+<ul>
+	<% @gifts.each do |gift| %>
+
+		<li><%= gift.title %></li>
+
+	<% end %>
+</ul>

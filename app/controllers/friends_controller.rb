@@ -10,12 +10,15 @@ end
 def create
 	@friend = Friend.new(friend_params)
 	@friend.user_id = current_user.id
-	if !@friend.budget || !@friend.name
-		flash.notice = "Must include a name and price!"
-		render "/friends/new"
-	elsif @friend.save
-		redirect_to "/friends"
+	if @friend.name != "" && @friend.budget
+		if @friend.save
+			redirect_to "/friends"
+		else
+			flash.notice = "Must include a name and spending goal!"
+			render "/friends/new"
+		end
 	else
+		flash.notice = "Must include a name and spending goal!"
 		render "/friends/new"
 	end
 end
@@ -39,11 +42,15 @@ end
 
 def update
 	@friend = Friend.find(params[:id])
-	if @friend.update(friend_params)
-		# redirect_to "/friends/#{@friend[:id]}"
-		redirect_to "/friends"
+	if friend_params[:name] != "" && friend_params[:budget] != ""
+		if @friend.update(friend_params)
+			redirect_to "/friends"
+		else
+			render "/friends/#{@friend[:id]}/edit"
+		end
 	else
-		render "/friends/#{@friend[:id]}/edit"
+		flash.notice = "Must include a name and spending goal!"
+		redirect_to "/friends/#{@friend[:id]}/edit"
 	end
 end
 

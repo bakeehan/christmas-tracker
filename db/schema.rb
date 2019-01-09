@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_04_184746) do
+ActiveRecord::Schema.define(version: 2018_12_05_002911) do
 
   create_table "friends", force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
-    t.integer "budget"
+    t.string "name", null: false
+    t.integer "user_id", null: false
+    t.integer "budget", null: false
   end
 
   create_table "gifts", force: :cascade do |t|
-    t.string "title"
-    t.integer "user_id"
-    t.integer "friend_id"
-    t.integer "price"
+    t.string "title", null: false
+    t.integer "user_id", null: false
+    t.integer "friend_id", null: false
+    t.integer "price", null: false
   end
 
   create_table "users", force: :cascade do |t|
