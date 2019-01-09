@@ -1,0 +1,16 @@
+<h1>Friends#show</h1>
+<p>Find me in app/views/friends/show.html.erb</p>
+
+<%= @friend.name %> is receiving...
+
+<ul>
+
+	<% @friend.gifts.each do |present| %>
+		<li> <%= a_logic(present) %> <%= present.title %> (<a href="/gifts/<%= present.id %>/edit">edit</a>)</li>
+	<% end %>
+
+</ul>
+
+<p>
+
+<a href="/friends/<%= @friend.id %>/edit">edit friend</a>

@@ -1,0 +1,14 @@
+<h1>Friends#edit</h1>
+<p>Find me in app/views/friends/edit.html.erb</p>
+
+<%= form_for @friend do |f| %>
+
+	name <%= f.text_field :name %>
+	<br>
+	spending a different amount on them? <%= f.number_field :budget %>
+
+	<p>
+
+	<%= f.submit "update" %>
+
+<% end %>

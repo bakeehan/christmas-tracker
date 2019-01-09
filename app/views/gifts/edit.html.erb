@@ -1,0 +1,18 @@
+<h1>Gifts#edit</h1>
+<p>Find me in app/views/gifts/edit.html.erb</p>
+
+<%= form_for @gift do |f| %>
+
+	rename <%= f.text_field :title %>
+	<br>
+	did the price change? <%= f.number_field :price %>
+	<br>
+	giving it to someone else now?
+
+	<%= select_tag(:friend_id, options_from_collection_for_select(@friends, 'id', 'name', @gift.friend_id)) %>
+
+	<p>
+
+	<%= f.submit "update" %>
+
+<% end %>
