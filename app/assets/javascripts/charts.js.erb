@@ -52,7 +52,7 @@ function runCanvas(pieFilling) {
 			 
 			    // var labelText = Math.round(100 * val / total_value);
 			    var labelText = categ;
-			    this.ctx.fillStyle = "white";
+			    this.ctx.fillStyle = "black";
 			    this.ctx.font = "bold 20px Arial";
 			    this.ctx.fillText(labelText, labelX,labelY);
 			    start_angle += slice_angle;
@@ -68,7 +68,7 @@ function runCanvas(pieFilling) {
 	    {
 	        canvas:myCanvas,
 	        data:pieFilling,
-	        colors:["#fde23e","#f16e23", "#57d9ff","#937e88"]
+	        colors:["#A0AF84","#C3B59F","#668F80", "#D6A2AD","#4A6670"]
 	    }
 	);
 	myPiechart.draw();
